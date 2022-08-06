@@ -81,7 +81,7 @@ string SupportingMethods :: deleteDashFromDate(string date) {
 
     return stringDateWithoutDash;
 }
-
+/*
 Date SupportingMethods :: convertingStringDateToDateClassObject(string dateString) {
 
     Date enteringDate;
@@ -113,3 +113,4 @@ Date SupportingMethods :: convertingStringDateToDateClassObject(string dateStrin
     return enteringDate;
 
 }
+*/

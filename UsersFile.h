@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <cstring>
+#include <string>
 
 #include "XmlFile.h"
 #include "User.h"
@@ -11,8 +13,7 @@
 
 using namespace std;
 
-class UsersFile : public XmlFile
-{
+class UsersFile : public XmlFile{
 
     string usersFileName;
 
