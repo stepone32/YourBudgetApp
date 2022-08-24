@@ -6,7 +6,6 @@ void UserManager :: userRegistration()
     User user = enterNewUserDetails();
 
     users.push_back(user);
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(user); /trzeba zaktualizowaæ do pliku XML
     usersFile.addUserToFile(user);
     cout << endl << "Account created successfully" << endl << endl;
     system("pause");
@@ -32,14 +31,12 @@ User UserManager::enterNewUserDetails()
     do
     {
         cout << "Enter login: ";
-       // login = MetodyPomocnicze::wczytajLinie();
-       cin >> login;
+        login = SupportingMethods::loadLine();
         user.setLogin(login);
     } while (whetherLoginExists(user.getLogin()) == true);
     string password;
     cout << "Enter password: ";
-    //password = MetodyPomocnicze::wczytajLinie();
-    cin >> password;
+    password = SupportingMethods::loadLine();
     user.setPassword(password);
 
     return user;
@@ -85,8 +82,7 @@ void UserManager::userLoging()
     string login = "", password = "";
 
     cout << endl << "Enter login: ";
-    //login = MetodyPomocnicze::wczytajLinie();
-    cin >> login;
+    login = SupportingMethods::loadLine();
     vector <User>::iterator itr = users.begin();
     while (itr != users.end())
     {
@@ -95,8 +91,7 @@ void UserManager::userLoging()
             for (int numberOfTries = 3; numberOfTries > 0; numberOfTries--)
             {
                 cout << "Enter the password. Remaining tries: " << numberOfTries << ": ";
-                //haslo = MetodyPomocnicze::wczytajLinie();
-                cin >> password;
+                password = SupportingMethods::loadLine();
                 if (itr -> getPassword() == password)
                 {
                     loggedInUserId = itr -> getUserId();
@@ -120,8 +115,7 @@ void UserManager::changeLoggedUserPassword()
 {
     string newPassword = "";
     cout << "Enter a new password: ";
-    //newPassword = MetodyPomocnicze::wczytajLinie();
-    cin >> newPassword;
+    newPassword = SupportingMethods::loadLine();
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
     {
         if (itr -> getUserId() == loggedInUserId)

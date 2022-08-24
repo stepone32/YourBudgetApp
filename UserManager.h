@@ -9,7 +9,7 @@
 
 #include "User.h"
 #include "UsersFile.h"
-//#include "PlikZUzytkownikami.h"
+#include "SupportingMethods.h"
 
 
 using namespace std;
@@ -31,13 +31,15 @@ public:
     {
         //uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
         loggedInUserId = 0;
+        users = usersFile.loadUsersFromFile();
+
     };
 
     void userRegistration();
     void setUserId(int newLoggedInUserId);
     void userLoging();
     bool ifUserIsLoggedIn();
-    int getLoggedInUserId();
+    int  getLoggedInUserId();
     void displayAllUsers();
     void changeLoggedUserPassword();
     void saveAllUsersToFile();
