@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "User.h"
+#include "UsersFile.h"
 //#include "PlikZUzytkownikami.h"
 
 
@@ -21,12 +22,12 @@ class UserManager
     User enterNewUserDetails();
     int getNewUserId();
     bool whetherLoginExists(string login);
-    string userFileName;  //UsersFile usersFile; /podmieniæ po stworzeniu klasy UseFile
+    UsersFile usersFile;
 
 
 public:
     //UserManager(string nazwaPlikuZuzytkownikami): plikZUzytkownikami(nazwaPlikuZuzytkownikami)
-     UserManager(string newUserFileName): userFileName(newUserFileName)
+     UserManager(string newUserFileName): usersFile(newUserFileName)
     {
         //uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
         loggedInUserId = 0;

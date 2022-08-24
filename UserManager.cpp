@@ -7,8 +7,8 @@ void UserManager :: userRegistration()
 
     users.push_back(user);
     //plikZUzytkownikami.dopiszUzytkownikaDoPliku(user); /trzeba zaktualizowaæ do pliku XML
-
-    cout << endl << "Konto zalozono pomyslnie" << endl << endl;
+    usersFile.addUserToFile(user);
+    cout << endl << "Account created successfully" << endl << endl;
     system("pause");
 }
 
@@ -22,8 +22,6 @@ void UserManager :: setUserId(int newLoggedInUserId)
      loggedInUserId = newLoggedInUserId;
 }
 
-
-
 User UserManager::enterNewUserDetails()
 {
     User user;
@@ -33,13 +31,13 @@ User UserManager::enterNewUserDetails()
 
     do
     {
-        cout << "Podaj login: ";
+        cout << "Enter login: ";
        // login = MetodyPomocnicze::wczytajLinie();
        cin >> login;
         user.setLogin(login);
     } while (whetherLoginExists(user.getLogin()) == true);
     string password;
-    cout << "Podaj haslo: ";
+    cout << "Enter password: ";
     //password = MetodyPomocnicze::wczytajLinie();
     cin >> password;
     user.setPassword(password);
@@ -61,12 +59,11 @@ bool UserManager :: whetherLoginExists(string login)
     {
         if(users[i].getLogin()==login)
         {
-            cout << endl << "Istnieje uzytkownik o takim loginie"<<endl;
+            cout << endl << "There is a user with this login"<<endl;
             return true;
         }
     }
     return false;
-
 }
 
 void UserManager::displayAllUsers()
@@ -79,7 +76,6 @@ void UserManager::displayAllUsers()
         cout << users[i].getPassword() <<endl;
 
     }
-
    }
 
 
@@ -88,7 +84,7 @@ void UserManager::userLoging()
     User user;
     string login = "", password = "";
 
-    cout << endl << "Podaj login: ";
+    cout << endl << "Enter login: ";
     //login = MetodyPomocnicze::wczytajLinie();
     cin >> login;
     vector <User>::iterator itr = users.begin();
@@ -98,24 +94,24 @@ void UserManager::userLoging()
         {
             for (int numberOfTries = 3; numberOfTries > 0; numberOfTries--)
             {
-                cout << "Podaj haslo. Pozostalo prob: " << numberOfTries << ": ";
+                cout << "Enter the password. Remaining tries: " << numberOfTries << ": ";
                 //haslo = MetodyPomocnicze::wczytajLinie();
                 cin >> password;
                 if (itr -> getPassword() == password)
                 {
                     loggedInUserId = itr -> getUserId();
-                    cout << endl << "Zalogowales sie." << endl << endl;
+                    cout << endl << "You logged in." << endl << endl;
                     system("pause");
                     return;
                 }
             }
-            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            cout << "Wrong password entered 3 times." << endl;
             system("pause");
             return;
         }
         itr++;
     }
-    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    cout << "There is no user with this login." << endl << endl;
     system("pause");
     return;
 }
@@ -123,7 +119,7 @@ void UserManager::userLoging()
 void UserManager::changeLoggedUserPassword()
 {
     string newPassword = "";
-    cout << "Podaj nowe haslo: ";
+    cout << "Enter a new password: ";
     //newPassword = MetodyPomocnicze::wczytajLinie();
     cin >> newPassword;
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
@@ -131,7 +127,7 @@ void UserManager::changeLoggedUserPassword()
         if (itr -> getUserId() == loggedInUserId)
         {
             itr -> setPassword(newPassword);
-            cout << "Haslo zostalo zmienione." << endl << endl;
+            cout << "Password has been changed." << endl << endl;
             system("pause");
         }
     }
